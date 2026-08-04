@@ -15,22 +15,19 @@ export class Home implements OnInit {
   private readonly episodeService = inject(EpisodesService);
   private readonly locationService = inject(LocationsService);
     
-    // 1. Déclaration de la propriété sans 'let'
     numberOfCharacters = signal<number>(0);
     numberOfEpisodes = signal<number>(0);
     numberOfLocations = signal<number>(0);
 
     ngOnInit() {
-      // 2. On souscrit pour attendre que l'API réponde
-        this.characterService.getCharactersFromService().subscribe((response) => {
-        // 3. On extrait la longueur de la liste
+      this.characterService.getCharactersFromService().subscribe((response) => {
         this.numberOfCharacters.set(response.info.count);
       
       this.episodeService.getEpisodesFromService().subscribe((response) => {
         this.numberOfEpisodes.set(response.info.count);
 
       this.locationService.getLocationsFromService().subscribe((response) => {
-        this.numberOfEpisodes.set(response.info.count);
+        this.numberOfLocations.set(response.info.count);
       })
       })
       });

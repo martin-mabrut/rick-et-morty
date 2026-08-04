@@ -26,7 +26,7 @@ export const routes: Routes = [
   {
     path: LOCATIONS_PATHS.base,
     loadChildren: async () =>
-      import('./features/locations/locations.routes').then((module) => module.EPISODES_ROUTES),
+      import('./features/locations/locations.routes').then((module) => module.LOCATIONS_ROUTES),
   },
   {
     path: ERROR_PATHS.base,

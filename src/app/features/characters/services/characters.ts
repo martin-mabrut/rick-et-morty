@@ -14,8 +14,7 @@ export class CharactersService {
   readonly url = 'https://rickandmortyapi.com/api/character/';
 
   getCharactersFromService(page: number = 1): Observable<ApiResponse<Character[]>> {
-    return this.http
-      .get<ApiResponse<Character[]>>(this.url, {
+    return this.http.get<ApiResponse<Character[]>>(this.url, {
         params: { page: page },
       })
       .pipe(tap((response: ApiResponse<Character[]>) => this.characters.set(response.results)));

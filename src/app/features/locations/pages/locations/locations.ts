@@ -2,9 +2,8 @@ import { Component, OnInit, signal, inject } from '@angular/core';
 import { Location } from '../../types/location.type';
 import { LocationCard } from '../../components/location-card/location-card';
 import { LocationsService } from '../../services/locations';
-import { CharactersService } from '../../../characters/services/characters'
 import { ApiResponse, InfoResponse } from '../../../../shared/types/api-response.types';
-import { Pagination } from '../../components/pagination/pagination';
+import { Pagination } from '../../../../shared/components/pagination/pagination';
 
 @Component({
   selector: 'app-locations',
@@ -14,7 +13,6 @@ import { Pagination } from '../../components/pagination/pagination';
 })
 export class Locations implements OnInit {
   private readonly locationService = inject(LocationsService);
-  private readonly characterService = inject(CharactersService);
   readonly locations = this.locationService.locationSignal;
   readonly infos = signal<InfoResponse>({} as InfoResponse);
   currentPage = signal(1);
@@ -42,11 +40,5 @@ export class Locations implements OnInit {
     this.currentPage.set(page);
     this.locationService.getLocationsFromService(page).subscribe();
   }
-
-  getCharactersName() {
-    this.characterService.getCharactersFromService().subscribe();
-    this.loadLocations();
-  }
- 
   
 }
