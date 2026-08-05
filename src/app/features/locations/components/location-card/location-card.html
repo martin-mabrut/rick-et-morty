@@ -1,6 +1,6 @@
 <article
     class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-green-400/20 bg-slate-900/70 shadow-xl backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-green-400/60 hover:shadow-[0_0_40px_rgba(74,222,128,0.25)]"
->
+(click)="onClicOnLocationCard()">
 
   <!-- Glow -->
   <div
@@ -49,8 +49,15 @@
         <p>{{ location().residents.length }}</p>
       </span>
 
-
     </div>
+
+    @if (isUnfolded()) {
+      <ul class="mt-6">
+      @for (character of residents(); track character.id) {
+        <li>{{ character.name }}</li>
+      }
+      </ul>
+    }
 
 
   </div>
