@@ -13,16 +13,32 @@ export class CharactersService {
   readonly characterSignal = this.characters.asReadonly();
   readonly url = 'https://rickandmortyapi.com/api/character/';
 
-  getCharactersFromService(page: number = 1): Observable<ApiResponse<Character[]>> {
+  getCharactersFromService(page: number = 1, name?: string): Observable<ApiResponse<Character[]>> {
+    let params = new HttpParams();
+
+    if(!name || name.trim() === "") {
+      params = params.set('page', page);
+    } else {
+      params = params.set('page', page).set('name', name);
+    }
+
     return this.http.get<ApiResponse<Character[]>>(this.url, {
-        params: { page: page },
+        params: params,
       })
       .pipe(tap((response: ApiResponse<Character[]>) => this.characters.set(response.results)));
   }
 
-  getCharacterFromComponent(page: number = 1): Observable<ApiResponse<Character[]>> {
+  getCharacterFromComponent(page: number = 1, name?: string): Observable<ApiResponse<Character[]>> {
+    let params = new HttpParams();
+    
+    if(!name || name.trim() === "") {
+      params = params.set('page', page);
+    } else {
+      params = params.set('page', page).set('name', name);
+    }
+
     return this.http.get<ApiResponse<Character[]>>(this.url, {
-      params: { page: page },
+      params: params,
     });
   }
 
