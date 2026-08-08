@@ -13,13 +13,30 @@ export class CharactersService {
   readonly characterSignal = this.characters.asReadonly();
   readonly url = 'https://rickandmortyapi.com/api/character/';
 
-  getCharactersFromService(page: number = 1, name?: string): Observable<ApiResponse<Character[]>> {
-    let params = new HttpParams();
 
-    if(!name || name.trim() === "") {
-      params = params.set('page', page);
-    } else {
-      params = params.set('page', page).set('name', name);
+
+  getCharactersFromService(page: number = 1, name?: string, status?: string, species?:string, type?:string, gender?:string): Observable<ApiResponse<Character[]>> {
+    let params = new HttpParams();
+    params = params.set('page', page);
+
+    if (name && name.trim() !== '') {
+    params = params.set('name', name);
+    }
+
+    if (status && status.trim() !== '') {
+      params = params.set('status', status);
+    }
+
+    if (species && species.trim() !== '') {
+      params = params.set('species', species);
+    }
+
+    if (type && type.trim() !== '') {
+      params = params.set('type', type);
+    }
+
+    if (gender && gender.trim() !== '') {
+      params = params.set('gender', gender);
     }
 
     return this.http.get<ApiResponse<Character[]>>(this.url, {
@@ -28,19 +45,38 @@ export class CharactersService {
       .pipe(tap((response: ApiResponse<Character[]>) => this.characters.set(response.results)));
   }
 
-  getCharacterFromComponent(page: number = 1, name?: string): Observable<ApiResponse<Character[]>> {
+
+
+
+  getCharacterFromComponent(page: number = 1, name?: string, status?: string, species?:string, type?:string, gender?:string): Observable<ApiResponse<Character[]>> {
     let params = new HttpParams();
+    params = params.set('page', page);
     
-    if(!name || name.trim() === "") {
-      params = params.set('page', page);
-    } else {
-      params = params.set('page', page).set('name', name);
+    if (name && name.trim() !== '') {
+    params = params.set('name', name);
+    }
+
+    if (status && status.trim() !== '') {
+      params = params.set('status', status);
+    }
+
+    if (species && species.trim() !== '') {
+      params = params.set('species', species);
+    }
+
+    if (type && type.trim() !== '') {
+      params = params.set('type', type);
+    }
+
+    if (gender && gender.trim() !== '') {
+      params = params.set('gender', gender);
     }
 
     return this.http.get<ApiResponse<Character[]>>(this.url, {
       params: params,
     });
   }
+  
 
   getCharactersByUrls(urls: string[]): Observable<Character[]> {
     const idsList: string[] = [];

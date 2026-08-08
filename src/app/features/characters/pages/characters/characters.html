@@ -34,6 +34,33 @@
 
       <app-search-bar (search)="onSearch($event)"></app-search-bar>
 
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-2">
+        <app-filter-button label="Alive" value="alive" [active]="selectedStatus() === 'alive'" (select)="toggleStatus($event)"></app-filter-button>
+        <app-filter-button label="Dead" value="dead" [active]="selectedStatus() === 'dead'" (select)="toggleStatus($event)"></app-filter-button>
+        <app-filter-button label="Unknown" value="unknown" [active]="selectedStatus() === 'unknown'" (select)="toggleStatus($event)"></app-filter-button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+        <app-filter-button label="Male" value="male" [active]="selectedGender() === 'male'" (select)="toggleGender($event)"></app-filter-button>
+        <app-filter-button label="Female" value="female" [active]="selectedGender() === 'female'" (select)="toggleGender($event)"></app-filter-button>
+        <app-filter-button label="Genderless" value="genderless" [active]="selectedGender() === 'genderless'" (select)="toggleGender($event)"></app-filter-button>
+        <app-filter-button label="Unknown" value="unknown" [active]="selectedGender() === 'unknown'" (select)="toggleGender($event)"></app-filter-button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+        <app-filter-button label="Human" value="human" [active]="selectedSpecies() === 'human'" (select)="toggleSpecies($event)"></app-filter-button>
+        <app-filter-button label="Alien" value="alien" [active]="selectedSpecies() === 'alien'" (select)="toggleSpecies($event)"></app-filter-button>
+        <app-filter-button label="Humanoid" value="humanoid" [active]="selectedSpecies() === 'humanoid'" (select)="toggleSpecies($event)"></app-filter-button>
+        <app-filter-button label="Unknown" value="unknown" [active]="selectedSpecies() === 'unknown'" (select)="toggleSpecies($event)"></app-filter-button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+        <app-filter-button label="Superhuman" value="superhuman" [active]="selectedType() === 'superhuman'" (select)="toggleType($event)"></app-filter-button>
+        <app-filter-button label="Robot" value="robot" [active]="selectedType() === 'robot'" (select)="toggleType($event)"></app-filter-button>
+        <app-filter-button label="Parasite" value="parasite" [active]="selectedType() === 'parasite'" (select)="toggleType($event)"></app-filter-button>
+        <app-filter-button label="Clone" value="clone" [active]="selectedType() === 'clone'" (select)="toggleType($event)"></app-filter-button>
+      </div>
+
     </div>
 
     <!-- Cards -->
