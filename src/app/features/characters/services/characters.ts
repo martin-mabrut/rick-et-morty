@@ -9,18 +9,18 @@ import { ApiResponse } from '../../../shared/types/api-response.types';
 })
 export class CharactersService {
   private readonly http = inject(HttpClient);
-  private characters = signal<Character[]>([]);
+  characters = signal<Character[]>([]);
   readonly characterSignal = this.characters.asReadonly();
   readonly url = 'https://rickandmortyapi.com/api/character/';
 
 
 
-  getCharactersFromService(page: number = 1, name?: string, status?: string, species?:string, type?:string, gender?:string): Observable<ApiResponse<Character[]>> {
+  getCharactersFromService(page: number = 1, name?: string, status?: string, species?: string, type?: string, gender?: string): Observable<ApiResponse<Character[]>> {
     let params = new HttpParams();
     params = params.set('page', page);
 
     if (name && name.trim() !== '') {
-    params = params.set('name', name);
+      params = params.set('name', name);
     }
 
     if (status && status.trim() !== '') {
@@ -40,20 +40,20 @@ export class CharactersService {
     }
 
     return this.http.get<ApiResponse<Character[]>>(this.url, {
-        params: params,
-      })
+      params: params,
+    })
       .pipe(tap((response: ApiResponse<Character[]>) => this.characters.set(response.results)));
   }
 
 
 
 
-  getCharacterFromComponent(page: number = 1, name?: string, status?: string, species?:string, type?:string, gender?:string): Observable<ApiResponse<Character[]>> {
+  getCharacterFromComponent(page: number = 1, name?: string, status?: string, species?: string, type?: string, gender?: string): Observable<ApiResponse<Character[]>> {
     let params = new HttpParams();
     params = params.set('page', page);
-    
+
     if (name && name.trim() !== '') {
-    params = params.set('name', name);
+      params = params.set('name', name);
     }
 
     if (status && status.trim() !== '') {
@@ -76,12 +76,12 @@ export class CharactersService {
       params: params,
     });
   }
-  
+
 
   getCharactersByUrls(urls: string[]): Observable<Character[]> {
     const idsList: string[] = [];
 
-    for(let i = 0; i < urls.length; i++) {
+    for (let i = 0; i < urls.length; i++) {
       const id: string = urls[i].split("/").pop()!;
       idsList.push(id);
     }

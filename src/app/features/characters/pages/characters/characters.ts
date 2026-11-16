@@ -32,7 +32,7 @@ export class Characters implements OnInit {
     this.loadCharacters();
   }
 
-  loadCharacters(page?: number, name?: string, status?: string, species?:string, type?:string, gender?:string) {
+  loadCharacters(page?: number, name?: string, status?: string, species?: string, type?: string, gender?: string) {
     this.currentPage.set(page ? page : 1);
 
     this.characterService
@@ -55,7 +55,7 @@ export class Characters implements OnInit {
   }
 
   toggleStatus(value: string) {
-    if (this.selectedStatus() === value){
+    if (this.selectedStatus() === value) {
       this.selectedStatus.set('');
     } else {
       this.selectedStatus.set(value);
@@ -66,7 +66,7 @@ export class Characters implements OnInit {
   }
 
   toggleSpecies(value: string) {
-    if (this.selectedSpecies() === value){
+    if (this.selectedSpecies() === value) {
       this.selectedSpecies.set('');
     } else {
       this.selectedSpecies.set(value);
@@ -77,7 +77,7 @@ export class Characters implements OnInit {
   }
 
   toggleGender(value: string) {
-    if (this.selectedGender() === value){
+    if (this.selectedGender() === value) {
       this.selectedGender.set('');
     } else {
       this.selectedGender.set(value);
@@ -88,7 +88,7 @@ export class Characters implements OnInit {
   }
 
   toggleType(value: string) {
-    if (this.selectedType() === value){
+    if (this.selectedType() === value) {
       this.selectedType.set('');
     } else {
       this.selectedType.set(value);
