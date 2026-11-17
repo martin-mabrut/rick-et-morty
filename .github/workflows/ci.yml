@@ -24,8 +24,10 @@ jobs:
     - name: Regarder la clé
       run: echo "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
 
-    - name: Vérifier le cache
-      run: echo "${{ steps.cache-npm.outputs.key }}"
+    - name: Vérifier la clé du fichier mis en cache
+      run: |
+        echo "Clé du fichier actuellement mis en cache : ${{ steps.cache-npm.outputs.cache-primary-key }}"
+        echo "Clé du fichier déjà mis en cache précédemment : ${{ steps.cache-npm.outputs.cache-matched-key }}"
 
     - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
       name:  Installer les dépendances
