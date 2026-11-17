@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   lint:
-    name: Lint (ESLint)
+    name: Lint Test Build
     runs-on: ubuntu-latest
 
     steps:
