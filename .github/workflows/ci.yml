@@ -15,28 +15,27 @@ jobs:
       with:
         node-version: '26'
 
-    - uses: actions/cache@v4
+    - uses: actions/cache@v6
       id: cache-npm
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-{{ hashFiles('**/package-lock.json') }}
 
-    - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-      name: Liste l'état des nodes-modules
-      continue-on-error: true
+    - name: Liste l'état des nodes-modules
       run: npm list
 
-    - name:  Installer les dépendances
+    - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+      name:  Installer les dépendances
       run: npm ci
 
     - name: Lancer le lint
-      run: npm run ng lint
+      run: npm run lint
 
     - name: Lancer les tests
-      run: npm run ng test
+      run: npm run test
 
     - name: Lancer le build
-      run: npm run ng build
+      run: npm run build
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
