@@ -20,7 +20,7 @@ export class Episodes implements OnInit {
 
   ngOnInit() {
     // Method 1 : Do everything in the service
-    this.episodeService.getEpisodesFromService().subscribe();
+    this.episodeService.getEpisodesFromService(this.currentPage()).subscribe();
     // Method 2 : Get needed value in the component directly
     this.loadEpisodes();
   }
@@ -29,7 +29,7 @@ export class Episodes implements OnInit {
     this.currentPage.set(page ? page : 1);
 
     this.episodeService
-      .getEpisodeFromComponent()
+      .getEpisodeFromComponent(this.currentPage())
       .subscribe((response: ApiResponse<Episode[]>) => {
         this.infos.set(response.info);
         this.totalPage.set(this.infos().pages);
