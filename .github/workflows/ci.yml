@@ -19,7 +19,7 @@ jobs:
       id: cache-npm
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-node-{{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-{{ hashFiles('**/package.json') }}
 
     - name:  Installer les dépendances
       if: steps.cache-npm.outputs.cache-hit != 'true'
