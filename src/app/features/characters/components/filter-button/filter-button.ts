@@ -10,15 +10,15 @@ export class FilterButton {
   value = input<string>();
   label = input<string>();
   active = input<boolean>();
-  select = output<string>();
+  filterSelected = output<string>();
 
   emited() {
     const currentValue = this.value();
 
     if (currentValue === undefined) {
-      this.select.emit('');
+      this.filterSelected.emit('');
     } else {
-      this.select.emit(currentValue);
+      this.filterSelected.emit(currentValue);
     }
   }
 }

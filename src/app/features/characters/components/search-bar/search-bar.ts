@@ -11,11 +11,11 @@ import { debounceTime, distinctUntilChanged} from 'rxjs';
 })
 export class SearchBar implements OnInit {
   searchInputed = new FormControl('', { nonNullable: true });
-  search = output<string>();
+  searchChanged = output<string>();
 
   ngOnInit() {
       this.searchInputed.valueChanges
         .pipe(debounceTime(300), distinctUntilChanged())
-        .subscribe((value) => this.search.emit(value));
+        .subscribe((value) => this.searchChanged.emit(value));
     }
 }

@@ -15,7 +15,7 @@ export class CharactersService {
 
 
 
-  getCharactersFromService(page: number = 1, name?: string, status?: string, species?: string, type?: string, gender?: string): Observable<ApiResponse<Character[]>> {
+  getCharactersFromService(page = 1, name?: string, status?: string, species?: string, type?: string, gender?: string): Observable<ApiResponse<Character[]>> {
     let params = new HttpParams();
     params = params.set('page', page);
 
@@ -48,7 +48,7 @@ export class CharactersService {
 
 
 
-  getCharacterFromComponent(page: number = 1, name?: string, status?: string, species?: string, type?: string, gender?: string): Observable<ApiResponse<Character[]>> {
+  getCharacterFromComponent(page = 1, name?: string, status?: string, species?: string, type?: string, gender?: string): Observable<ApiResponse<Character[]>> {
     let params = new HttpParams();
     params = params.set('page', page);
 
@@ -81,8 +81,8 @@ export class CharactersService {
   getCharactersByUrls(urls: string[]): Observable<Character[]> {
     const idsList: string[] = [];
 
-    for (let i = 0; i < urls.length; i++) {
-      const id: string = urls[i].split("/").pop()!;
+    for (const url of urls) {
+      const id: string = url.split("/").pop()!;
       idsList.push(id);
     }
 

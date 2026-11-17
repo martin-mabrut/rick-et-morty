@@ -1,9 +1,8 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, tap, forkJoin } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 import { Location } from '../types/location.type';
 import { ApiResponse } from '../../../shared/types/api-response.types';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ export class LocationsService {
   readonly locationSignal = this.locations.asReadonly();
   readonly url = 'https://rickandmortyapi.com/api/location';
 
-  getLocationsFromService(page: number = 1): Observable<ApiResponse<Location[]>> {
+  getLocationsFromService(page = 1): Observable<ApiResponse<Location[]>> {
   return this.http
     .get<ApiResponse<Location[]>>(this.url, {
       params: { page: page },
@@ -22,7 +21,7 @@ export class LocationsService {
     .pipe(tap((response: ApiResponse<Location[]>) => this.locations.set(response.results)));
 }
 
-  getLocationFromComponent(page: number = 1): Observable<ApiResponse<Location[]>> {
+  getLocationFromComponent(page = 1): Observable<ApiResponse<Location[]>> {
     return this.http.get<ApiResponse<Location[]>>(this.url, {
       params: { page: page },
     });

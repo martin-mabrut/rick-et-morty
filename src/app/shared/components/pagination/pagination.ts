@@ -15,7 +15,7 @@ export class Pagination {
   visiblePage = computed(() => {
     const current = this.currentPage();
     const total = this.totalPages();
-    let start: number = 0;
+    let start = 0;
     const maxVisible = 7;
     // If there's exactly 7 page show all pages
     if (total <= maxVisible) {
