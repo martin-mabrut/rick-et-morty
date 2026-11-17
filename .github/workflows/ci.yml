@@ -19,10 +19,14 @@ jobs:
       id: cache-npm
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-node-{{ hashFiles('**/package.json') }}
+        key: ${{ runner.os }}-node-{{ hashFiles('**/package-lock.json') }}
+
+    - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+      name: Liste l'état des nodes-modules
+      continue-on-error: true
+      run: npm list
 
     - name:  Installer les dépendances
-      if: steps.cache-npm.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Lancer le lint
