@@ -21,6 +21,12 @@ jobs:
         path: ~/.npm
         key: ${{ runner.os }}-node-{{ hashFiles('**/package-lock.json') }}
 
+    - name: Regarder la clé
+      run: echo "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
+
+    - name: Vérifier le cache
+      run: echo "${{ steps.cache-npm.outputs.cache-hit }}"
+
     - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
       name:  Installer les dépendances
       run: npm ci
