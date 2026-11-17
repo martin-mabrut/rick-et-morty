@@ -1,5 +1,5 @@
 name: ci
-run-name: ${{ github.actor }} et Najim font un workflow trop cool de ouf !
+run-name: ${{ github.actor }} et Najim font un workflow trop cool de ouf peut être!
 on: [push]
 jobs:
   build:
