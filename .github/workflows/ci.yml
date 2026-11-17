@@ -19,7 +19,7 @@ jobs:
       id: cache-npm
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-node-{{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
     - name: Regarder la clé
       run: echo "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
