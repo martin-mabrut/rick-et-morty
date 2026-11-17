@@ -1,5 +1,5 @@
 name: ci
-run-name: ${{ github.actor }} et Najim font un worflow !
+run-name: ${{ github.actor }} et Najim font un workflow !
 on: [push]
 jobs:
   build:
