@@ -25,7 +25,7 @@ jobs:
       run: echo "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
 
     - name: Vérifier le cache
-      run: echo "${{ steps.cache-npm.outputs.cache-hit }}"
+      run: echo "${{ steps.cache-npm.outputs.key }}"
 
     - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
       name:  Installer les dépendances
